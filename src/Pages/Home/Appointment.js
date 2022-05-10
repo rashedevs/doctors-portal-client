@@ -6,15 +6,15 @@ import MainButton from "../Shared/MainButton";
 const Appointment = () => {
   return (
     <section
-      className="flex justify-center items-center my-28"
+      className="flex justify-center items-center pt-9"
       style={{
         background: `url(${appointment})`,
       }}
     >
       <div className="flex-1 hidden lg:block">
-        <img className="mt-[-100px]" src={doctor} alt="" />
+        <img className="mt-[-150px]" src={doctor} alt="" />
       </div>
-      <div className="flex-1 py-10 px-10">
+      <div className="flex-1 px-10">
         <h3 className="text-xl text-primary font-bold">Appointment</h3>
         <h2 className="text-3xl text-white">Make an Appointment Today</h2>
         <p className="text-white py-6">

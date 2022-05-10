@@ -4,7 +4,7 @@ import MainButton from "../Shared/MainButton";
 
 const DentalBanner = () => {
   return (
-    <div class="hero min-h-screen my-9">
+    <div class="hero min-h-screen my-28">
       <div class="hero-content flex-col lg:flex-row">
         <img
           src={treatment}
