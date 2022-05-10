@@ -1,13 +1,19 @@
 import React from "react";
-import chair from "../../assets/images/chair.png";
+import treatment from "../../assets/images/treatment.png";
 
-const Banner = () => {
+const DentalBanner = () => {
   return (
     <div class="hero min-h-screen">
-      <div class="hero-content flex-col lg:flex-row-reverse">
-        <img src={chair} class="max-w-sm rounded-lg shadow-2xl" alt="" />
-        <div>
-          <h1 class="text-5xl font-bold">Your New Smile Starts Here</h1>
+      <div class="hero-content flex-col lg:flex-row">
+        <img
+          src={treatment}
+          class="max-w-sm rounded-lg shadow-2xl mx-6"
+          alt=""
+        />
+        <div class="px-6">
+          <h1 class="text-5xl font-bold">
+            Exceptional Dental Care, on Your Terms
+          </h1>
           <p class="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -22,4 +28,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default DentalBanner;
