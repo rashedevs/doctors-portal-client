@@ -7,7 +7,7 @@ const Footer = () => {
       style={{ background: `url(${footer})`, backgroundSize: "cover" }}
       className="p-10 my-28"
     >
-      <div className="footer flex justify-between">
+      <div className="footer flex justify-around">
         <div>
           <span className="footer-title">Services</span>
           <a className="link link-hover" href="/">
@@ -53,8 +53,8 @@ const Footer = () => {
       </div>
       <div className="my-10 text-center">
         <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by ACME
-          Industries Ltd
+          Copyright © {new Date().getFullYear()} - All right reserved by Doctors
+          Portal
         </p>
       </div>
     </footer>
