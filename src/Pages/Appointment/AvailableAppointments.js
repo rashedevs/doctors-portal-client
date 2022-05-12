@@ -27,6 +27,7 @@ const AvailableAppointments = ({ date }) => {
       </div>
       {treatment && (
         <BookingModal
+          key={treatment._id}
           date={date}
           treatment={treatment}
           setTreatment={setTreatment}
