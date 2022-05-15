@@ -9,6 +9,9 @@ import SignUp from "./Pages/Login/SignUp";
 import Navbar from "./Pages/Shared/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import MyAppointments from "./Pages/Dashboard/MyAppointments";
+import MyReview from "./Pages/Dashboard/MyReview";
 
 function App() {
   return (
@@ -16,17 +19,29 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/about" element={<About></About>}></Route>
+        <Route path="about" element={<About></About>}></Route>
         <Route
-          path="/appointment"
+          path="appointment"
           element={
             <RequireAuth>
               <Appointment></Appointment>
             </RequireAuth>
           }
         ></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
-        <Route path="/signup" element={<SignUp></SignUp>}></Route>
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard></Dashboard>
+            </RequireAuth>
+          }
+        >
+          <Route index element={<MyAppointments></MyAppointments>} />
+          <Route path="review" element={<MyReview></MyReview>} />
+        </Route>
+
+        <Route path="login" element={<Login></Login>}></Route>
+        <Route path="signup" element={<SignUp></SignUp>}></Route>
       </Routes>
       <ToastContainer />
     </div>
