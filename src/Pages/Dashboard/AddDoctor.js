@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
 
 const AddDoctor = () => {
   const {
@@ -7,9 +9,41 @@ const AddDoctor = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const { data: services, isLoading } = useQuery(
+    "services",
+    () => fetch("http://localhost:5000/service").then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+  );
+
+  const imageStorageKey = "3b62a31ed944cc1dfa173cad5cb4fd7d";
+
   const onSubmit = async (data) => {
-    console.log(data);
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+    fetch(url, { method: "POST", body: formData })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          const img = result.data.url;
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            specialty: data.specialty,
+            img: img,
+          };
+          //send to your db....
+        }
+        // console.log("imgbb", result);
+      });
   };
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <h2 className="text-2xl">Add A New Doctor</h2>
@@ -74,26 +108,38 @@ const AddDoctor = () => {
           <label className="label">
             <span className="label-text">Specialty</span>
           </label>
+
+          {/* daisy select */}
+          <select
+            {...register("specialty")}
+            class="select input-bordered w-full max-w-xs"
+          >
+            {services.map((service) => (
+              <option key={service._id} value={service.name}>
+                {service.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Photo</span>
+          </label>
           <input
-            type="text"
-            placeholder="Specialty"
+            type="file"
             className="input input-bordered w-full max-w-xs"
-            {...register("specialty", {
+            {...register("image", {
               required: {
                 value: true,
-                message: "Specialization is required",
+                message: "Image is required",
               },
             })}
           />
           <label className="label">
-            {errors.password?.type === "required" && (
+            {errors.name?.type === "required" && (
               <span className="label-text-alt text-red-500">
-                {errors.password.message}
-              </span>
-            )}
-            {errors.password?.type === "minLength" && (
-              <span className="label-text-alt text-red-500">
-                {errors.password.message}
+                {errors.name.message}
               </span>
             )}
           </label>
