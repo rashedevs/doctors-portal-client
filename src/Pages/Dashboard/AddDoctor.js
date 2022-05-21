@@ -14,7 +14,10 @@ const AddDoctor = () => {
 
   const { data: services, isLoading } = useQuery(
     "services",
-    () => fetch("http://localhost:5000/service").then((res) => res.json())
+    () =>
+      fetch("https://intense-woodland-49125.herokuapp.com/service").then(
+        (res) => res.json()
+      )
     //   .then((data) => {
     //     console.log(data);
     //   })
@@ -39,7 +42,7 @@ const AddDoctor = () => {
             img: img,
           };
           //send to your db....
-          fetch("http://localhost:5000/doctor", {
+          fetch("https://intense-woodland-49125.herokuapp.com/doctor", {
             method: "POST",
             headers: {
               "content-type": "application/json",

@@ -5,7 +5,7 @@ const DeleteConfirmModal = ({ deletingDoctor, refetch, setDeletingDoctor }) => {
   const { name, email } = deletingDoctor;
   const handleDelete = () => {
     //use confirm modal before delete(hw)
-    const url = `http://localhost:5000/doctor/${email}`;
+    const url = `https://intense-woodland-49125.herokuapp.com/doctor/${email}`;
     fetch(url, {
       method: "DELETE",
       headers: {
